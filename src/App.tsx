@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import QRCode from "qrcode";
-import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 /**
@@ -56,8 +62,19 @@ function App(): JSX.Element {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <input
-        type="text"
+      <Typography variant="h6" component="p">
+        Enter the text to be converted to a QR code here.
+      </Typography>
+      <TextField
+        variant="outlined"
+        error={inputValue === ""}
+        helperText={
+          inputValue === "" ? "Please enter a text to be converted." : ""
+        }
+        multiline
+        maxRows={4}
+        fullWidth
+        sx={{ maxWidth: 600 }}
         value={inputValue}
         onChange={(e) => {
           setInputValue(e.target.value);
