@@ -5,6 +5,8 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Box,
+  Stack,
   TextField,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -62,25 +64,29 @@ function App(): JSX.Element {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <Typography variant="h6" component="p">
-        Enter the text to be converted to a QR code here.
-      </Typography>
-      <TextField
-        variant="outlined"
-        error={inputValue === ""}
-        helperText={
-          inputValue === "" ? "Please enter a text to be converted." : ""
-        }
-        multiline
-        maxRows={4}
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
-      />
-      <GenerateQRCodeImage inputValue={inputValue} />
+      <Box m={2}>
+        <Stack spacing={0.5} direction="column">
+          <Typography variant="h6" component="p">
+            Enter the text to be converted to a QR code here.
+          </Typography>
+          <TextField
+            variant="outlined"
+            error={inputValue === ""}
+            helperText={
+              inputValue === "" ? "Please enter a text to be converted." : ""
+            }
+            multiline
+            maxRows={4}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+        </Stack>
+        <GenerateQRCodeImage inputValue={inputValue} />
+      </Box>
     </>
   );
 }
