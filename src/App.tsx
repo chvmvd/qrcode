@@ -12,17 +12,11 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 /**
- * Generate QR code image from string
- * @param param0 string to be converted to QR code
- * @returns QR code image
+ * Generate string of the SVG of a QR code
+ * @param inputValue string to be converted to QR code
+ * @returns string of the SVG of a QR code
  */
-function GenerateQRCodeImage({
-  inputValue,
-  style,
-}: {
-  inputValue: string;
-  style: React.CSSProperties;
-}): JSX.Element {
+function GenerateQRCodeString(inputValue: string): string {
   const [generatedQRCode, setGeneratedQRCode] = useState<string>("");
   useEffect(() => {
     if (inputValue !== "") {
@@ -37,6 +31,24 @@ function GenerateQRCodeImage({
       );
     }
   }, [inputValue]);
+  return generatedQRCode;
+}
+
+/**
+ * Generate QR code image from string
+ * @param param0 props
+ * @param param0.inputValue string to be converted to QR code
+ * @param param0.style style of the image
+ * @returns QR code image
+ */
+function GenerateQRCodeImage({
+  inputValue,
+  style,
+}: {
+  inputValue: string;
+  style: React.CSSProperties;
+}): JSX.Element {
+  const generatedQRCode = GenerateQRCodeString(inputValue);
   return (
     <>
       <img
