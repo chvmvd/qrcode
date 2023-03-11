@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QRCode from "qrcode";
+import { AppBar, Toolbar, Typography, IconButton } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 /**
  * Generate QR code image from string
@@ -36,6 +38,24 @@ function App(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("sample");
   return (
     <>
+      <AppBar>
+        <Toolbar>
+          <Typography variant="h5" component="div" flexGrow={1}>
+            QR Code Generator
+          </Typography>
+          <IconButton
+            color="inherit"
+            aria-label="GitHub repository"
+            size="large"
+          >
+            <GitHubIcon
+              fontSize="inherit"
+              href="git@github.com:chvmvd/qrcode.git"
+            />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
       <input
         type="text"
         value={inputValue}
