@@ -18,8 +18,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
  */
 function GenerateQRCodeImage({
   inputValue,
+  style,
 }: {
   inputValue: string;
+  style: React.CSSProperties;
 }): JSX.Element {
   const [generatedQRCode, setGeneratedQRCode] = useState<string>("");
   useEffect(() => {
@@ -37,7 +39,10 @@ function GenerateQRCodeImage({
   }, [inputValue]);
   return (
     <>
-      <img src={`data:image/svg+xml,${encodeURIComponent(generatedQRCode)}`} />;
+      <img
+        src={`data:image/svg+xml,${encodeURIComponent(generatedQRCode)}`}
+        style={style}
+      />
     </>
   );
 }
@@ -85,7 +90,10 @@ function App(): JSX.Element {
             }}
           />
         </Stack>
-        <GenerateQRCodeImage inputValue={inputValue} />
+        <GenerateQRCodeImage
+          inputValue={inputValue}
+          style={{ maxWidth: "600px" }}
+        />
       </Box>
     </>
   );
