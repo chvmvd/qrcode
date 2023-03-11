@@ -8,8 +8,10 @@ import {
   Box,
   Stack,
   TextField,
+  Button,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 /**
  * Generate string of the SVG of a QR code
@@ -55,6 +57,32 @@ function GenerateQRCodeImage({
         src={`data:image/svg+xml,${encodeURIComponent(generatedQRCode)}`}
         style={style}
       />
+    </>
+  );
+}
+
+/**
+ * Download button
+ * @param param0 props
+ * @param param0.inputValue string to be converted to QR code
+ * @returns download button
+ */
+function DownloadButton({ inputValue }: { inputValue: string }): JSX.Element {
+  const generatedQRCode = GenerateQRCodeString(inputValue);
+  return (
+    <>
+      <Button
+        variant="contained"
+        startIcon={<FileDownloadIcon />}
+        onClick={() => {
+          const a = document.createElement("a");
+          a.href = `data:image/svg+xml,${encodeURIComponent(generatedQRCode)}`;
+          a.download = "QRCode.svg";
+          a.click();
+        }}
+      >
+        Download
+      </Button>
     </>
   );
 }
@@ -106,6 +134,7 @@ function App(): JSX.Element {
           inputValue={inputValue}
           style={{ maxWidth: "600px" }}
         />
+        <DownloadButton inputValue={inputValue} />
       </Box>
     </>
   );
