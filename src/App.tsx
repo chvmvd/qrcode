@@ -103,7 +103,7 @@ function App(): JSX.Element {
           >
             <GitHubIcon
               fontSize="inherit"
-              href="git@github.com:chvmvd/qrcode.git"
+              href="https://github.com/chvmvd/qrcode-generator/"
             />
           </IconButton>
         </Toolbar>
